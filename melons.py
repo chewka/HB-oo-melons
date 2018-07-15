@@ -21,7 +21,16 @@ class AbstractMelonOrder:
 		"""Calculate price, including tax."""
 
 		base_price = 5
+		xmas_price = 1.5 * base_price
+		international_fee = 3
+
 		total = (1 + self.tax) * self.qty * base_price
+
+		if self.species == 'xmas':
+			total = total = (1 + self.tax) * self.qty * xmas_price
+
+		if self.country_code != "US" and self.qty < 10:
+			total = total + international_fee
 
 		return total
 
