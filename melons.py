@@ -34,6 +34,7 @@ class AbstractMelonOrder:
 
 		return total
 
+
 class DomesticMelonOrder(AbstractMelonOrder):
 	"""A melon order within the USA."""
 	order_type = "domestic"
@@ -47,4 +48,15 @@ class InternationalMelonOrder(AbstractMelonOrder):
 	tax = 0.17
 
 
+class GovernmentMelonOrder(AbstractMelonOrder):
 
+	order_type = "government"
+	tax = 0
+
+	passed_inspection = False
+
+	def mark_inspection(self, passed):
+		
+		self.passed_inspection = passed
+		
+		return self.passed_inspection
