@@ -1,6 +1,9 @@
+
+from random import randint
 """Classes for melon orders."""
 class AbstractMelonOrder:
 	"""An abstract base class that other Melon Orders inherit from."""
+
 	def __init__(self, species, qty, country_code=None):
 		self.species = species
 		self.qty = qty
@@ -17,10 +20,18 @@ class AbstractMelonOrder:
 	def mark_shipped(self):
 		self.shipped = True
 
+	def get_base_price(self):
+
+		random_num = randint(5,9)
+
+		return random_num
+
 	def get_total(self):
 		"""Calculate price, including tax."""
+		
+		# base_price = 5
+		base_price = self.get_base_price()
 
-		base_price = 5
 		xmas_price = 1.5 * base_price
 		international_fee = 3
 
@@ -33,6 +44,8 @@ class AbstractMelonOrder:
 			total = total + international_fee
 
 		return total
+
+
 
 
 class DomesticMelonOrder(AbstractMelonOrder):
@@ -52,6 +65,7 @@ class GovernmentMelonOrder(AbstractMelonOrder):
 
 	order_type = "government"
 	tax = 0
+	country_code = 'US'
 
 	passed_inspection = False
 
